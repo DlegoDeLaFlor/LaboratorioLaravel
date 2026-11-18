@@ -17,6 +17,7 @@ export default defineConfig({
         name: 'Gestión de Cursos',
         short_name: 'Cursos',
         description: 'Cliente PWA para la API de Gestión de Cursos',
+        lang: 'es',
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
