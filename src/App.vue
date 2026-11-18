@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { Network } from '@capacitor/network'
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'
+import Pedidos from './Pedidos.vue'
 
 const API = import.meta.env.VITE_API_URL
 
@@ -242,6 +243,7 @@ onUnmounted(() => {
           </li>
         </ul>
       </details>
+      <Pedidos />
     </template>
   </main>
 </template>
