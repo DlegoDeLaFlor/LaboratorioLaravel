@@ -1,0 +1,393 @@
+:root {
+  --navy: #14213d;
+  --navy-soft: #1f3157;
+  --gold: #fca311;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --bg: #eef2f7;
+  --card: #ffffff;
+  --border: #dbe3ee;
+  --danger: #b91c1c;
+  --ok: #047857;
+  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 500px at 10% -10%, rgba(252, 163, 17, 0.18), transparent 60%),
+    radial-gradient(800px 500px at 110% 0%, rgba(20, 33, 61, 0.16), transparent 55%),
+    var(--bg);
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.app {
+  width: min(1080px, 100%);
+  margin: 0 auto;
+  padding: 28px 18px 64px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+code {
+  background: #eef2f7;
+  border-radius: 6px;
+  padding: 1px 5px;
+  font-size: 0.9em;
+}
+
+/* ---------- Login ---------- */
+
+.login {
+  min-height: calc(100vh - 92px);
+  display: grid;
+  place-content: center;
+  gap: 24px;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand img {
+  border-radius: 18px;
+  box-shadow: 0 14px 30px rgba(20, 33, 61, 0.22);
+}
+
+.brand h1 {
+  color: var(--navy);
+}
+
+.brand p {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.brand.small {
+  gap: 12px;
+}
+
+.brand.small img {
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.brand.small h1 {
+  font-size: 1.2rem;
+}
+
+.brand.small p {
+  font-size: 0.82rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(20, 33, 61, 0.08);
+}
+
+form.card {
+  display: grid;
+  gap: 16px;
+  padding: 28px;
+}
+
+form.card h2 {
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy-soft);
+}
+
+input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 12px;
+  font: inherit;
+  color: var(--ink);
+  background: #fbfcfe;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(252, 163, 17, 0.22);
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 16px;
+  font: inherit;
+  font-weight: 700;
+  background: var(--navy);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.12s, background 0.15s, opacity 0.15s;
+}
+
+button:hover:not(:disabled) {
+  background: var(--navy-soft);
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ghost {
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--border);
+  padding: 8px 13px;
+  font-weight: 600;
+}
+
+.ghost:hover:not(:disabled) {
+  background: #f3f6fb;
+}
+
+.ghost.danger {
+  color: var(--danger);
+  border-color: #f3c9c9;
+}
+
+.ghost.danger:hover:not(:disabled) {
+  background: #fdf0f0;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ---------- App ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.banner {
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.banner.offline {
+  background: #fff7e6;
+  border: 1px solid #f8d48a;
+  color: #8a5a00;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.camera {
+  background: var(--gold);
+  color: #2b1a00;
+}
+
+.camera:hover:not(:disabled) {
+  background: #e5950f;
+}
+
+.photo {
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 30px rgba(20, 33, 61, 0.14);
+}
+
+.estado {
+  color: var(--muted);
+  margin: 14px 0;
+}
+
+.estado.error {
+  color: var(--danger);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.curso {
+  position: relative;
+  padding: 20px;
+  display: grid;
+  gap: 8px;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.curso::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: linear-gradient(var(--gold), var(--navy));
+}
+
+.curso:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 50px rgba(20, 33, 61, 0.14);
+}
+
+.curso h2 {
+  color: var(--navy);
+  padding-left: 4px;
+}
+
+.badge {
+  justify-self: start;
+  background: rgba(252, 163, 17, 0.18);
+  color: #7a4a00;
+  border: 1px solid rgba(252, 163, 17, 0.45);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.docente {
+  color: var(--navy-soft);
+  font-size: 0.92rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  margin-top: 2px;
+}
+
+.actualizado {
+  display: block;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.capas {
+  margin-top: 28px;
+  padding: 18px 20px;
+}
+
+.capas summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.capas ul {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  display: grid;
+  gap: 6px;
+}
+
+.capas b {
+  color: var(--ink);
+}
+
+@media (max-width: 560px) {
+  .app {
+    padding-top: 18px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .actions .ghost {
+    flex: 1;
+  }
+
+  form.card {
+    padding: 22px;
+  }
+}
