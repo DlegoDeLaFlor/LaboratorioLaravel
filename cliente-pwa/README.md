@@ -121,3 +121,20 @@ npm run preview   # vista previa PWA en 4173
   valorar cookies `HttpOnly`).
 - Al cerrar sesión se borra la caché `api-cache` para no mezclar datos entre usuarios.
 - La foto se muestra localmente; la API aún no tiene endpoint de subida.
+
+## Seguridad en producciónnp
+
+Valores que deben aplicarse al desplegar, sin cambiarlos en el entorno local de desarrollo:
+
+```env
+APP_ENV=production
+APP_DEBUG=false
+VITE_API_URL=https://api.dominio-real.example/api
+```
+
+- CORS debe aceptar únicamente el dominio real del cliente, por ejemplo `https://app.dominio-real.example`, sin usar `*` en `allowed_origins`.
+- Laravel debe servirse exclusivamente por HTTPS; no habilites HTTP cleartext en producción.
+- En `capacitor.config.json` no debe existir un bloque `server` con contenido HTTP inseguro ni `cleartext` habilitado.
+- `config/sanctum.php` debe mantener una expiración definida para los tokens. El valor actual es `60 * 8` minutos (480 minutos).
+- Los secretos y claves reales se almacenan solo en el `.env` de Laravel y no como variables `VITE_*` del cliente.
+- Para una clave expuesta: revócala en el proveedor, emite una nueva y reemplázala únicamente en el servidor.

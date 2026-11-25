@@ -4,7 +4,8 @@ const API = import.meta.env.VITE_API_URL
 const email = ref('ana@test.pe')
 const password = ref('secreto123')
 const pedidos = ref([])
- 
+const token = ref('') 
+
 async function entrar() {
   const res = await fetch(`${API}/login`, {
     method: 'POST',
@@ -12,29 +13,34 @@ async function entrar() {
     body: JSON.stringify({ email: email.value, password: password.value })
   })
   const json = await res.json()
-  localStorage.setItem('token', json.token)   // VULNERABLE a propósito
-  cargar()
+  if (!res.ok) return
+
+  token.value = json.token
+  await cargar()
 }
- 
+
 async function cargar() {
   const res = await fetch(`${API}/pedidos`, { headers: {
     Accept: 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('token')}` } })
+    Authorization: `Bearer ${token.value}` } })
   pedidos.value = await res.json()
 }
- 
-function salir() {
-  localStorage.removeItem('token')   // VULNERABLE: no revoca el token en el servidor
+
+async function salir() {
+  await fetch(`${API}/logout`, { method: 'POST',
+    headers: { Accept: 'application/json', Authorization: `Bearer ${token.value}` } })
+  token.value = ''
   pedidos.value = []
+  if ('caches' in window) await caches.delete('api-cache')
 }
+
 </script>
- 
 <template>
   <section>
     <input v-model="email" /> <input v-model="password" type="password" />
     <button @click="entrar">Entrar</button> <button @click="salir">Salir</button>
     <ul>
-      <li v-for="p in pedidos" :key="p.id" v-html="p.descripcion"></li>  <!-- VULNERABLE -->
+      <li v-for="p in pedidos" :key="p.id">{{ p.descripcion }}</li>
     </ul>
   </section>
 </template>

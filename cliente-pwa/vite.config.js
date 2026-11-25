@@ -37,6 +37,10 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
         runtimeCaching: [
           {
+            urlPattern: ({ url }) => url.pathname.startsWith('/api/pedidos'),
+            handler: 'NetworkOnly'   // datos privados: nunca a la caché
+          },
+          {
             urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
             handler: 'NetworkFirst',
             options: {
@@ -44,7 +48,7 @@ export default defineConfig({
               networkTimeoutSeconds: 3,
               expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 },
             },
-          },
+          }
         ],
       },
     }),
